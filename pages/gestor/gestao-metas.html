@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Metas | Sistema de Gamificação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+</head>
+<body>
+    <header class="navbar navbar-expand-lg" id="header">
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Gestão de Metas</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="exportarMetas">
+                                <i data-feather="download"></i> Exportar
+                            </button>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#novaMeta">
+                            <i data-feather="plus"></i> Nova Meta
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filtros -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3 mb-2">
+                                        <label for="periodoMetas" class="form-label">Período</label>
+                                        <select class="form-select" id="periodoMetas">
+                                            <option value="atual" selected>Período Atual</option>
+                                            <option value="proximo">Próximo Período</option>
+                                            <option value="anterior">Período Anterior</option>
+                                            <option value="anual">Anual</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-2">
+                                        <label for="tipoMeta" class="form-label">Tipo de Meta</label>
+                                        <select class="form-select" id="tipoMeta">
+                                            <option value="todos" selected>Todos os Tipos</option>
+                                            <option value="vendas">Vendas</option>
+                                            <option value="ticket">Ticket Médio</option>
+                                            <option value="desafios">Desafios</option>
+                                            <option value="pontos">Pontuação</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-2">
+                                        <label for="statusMeta" class="form-label">Status</label>
+                                        <select class="form-select" id="statusMeta">
+                                            <option value="todos" selected>Todos</option>
+                                            <option value="ativa">Ativa</option>
+                                            <option value="concluida">Concluída</option>
+                                            <option value="atrasada">Atrasada</option>
+                                            <option value="rascunho">Rascunho</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-2">
+                                        <label for="lojaFiltro" class="form-label">Loja/Franquia</label>
+                                        <select class="form-select" id="lojaFiltro">
+                                            <option value="todas" selected>Todas</option>
+                                            <option value="1">Shopping Norte</option>
+                                            <option value="2">Shopping Sul</option>
+                                            <option value="3">Loja Centro</option>
+                                            <option value="4">Shopping Leste</option>
+                                            <option value="5">Loja Oeste</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-12 text-end">
+                                        <button class="btn btn-primary" id="filtrarMetas">
+                                            <i data-feather="filter"></i> Filtrar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumo de Metas -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="card text-white bg-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Total de Metas</h5>
+                                <p class="card-text display-6" id="totalMetas">12</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-white bg-success">
+                            <div class="card-body">
+                                <h5 class="card-title">Metas Atingidas</h5>
+                                <p class="card-text display-6" id="metasAtingidas">5</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-white bg-warning">
+                            <div class="card-body">
+                                <h5 class="card-title">Em Andamento</h5>
+                                <p class="card-text display-6" id="metasAndamento">6</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-white bg-danger">
+                            <div class="card-body">
+                                <h5 class="card-title">Atrasadas</h5>
+                                <p class="card-text display-6" id="metasAtrasadas">1</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela de Metas -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Metas Cadastradas</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Título</th>
+                                                <th>Tipo</th>
+                                                <th>Loja/Franquia</th>
+                                                <th>Valor Alvo</th>
+                                                <th>Valor Atual</th>
+                                                <th>Progresso</th>
+                                                <th>Prazo</th>
+                                                <th>Status</th>
+                                                <th>Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tabelaMetas">
+                                            <!-- Dados serão carregados via JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráfico de Progresso -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Progresso por Tipo de Meta</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="graficoProgressoTipo" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Progresso por Loja</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="graficoProgressoLoja" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal Nova Meta -->
+    <div class="modal fade" id="novaMeta" tabindex="-1" aria-labelledby="novaMetaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="novaMetaLabel">Nova Meta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formNovaMeta">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="tituloMeta" class="form-label">Título da Meta</label>
+                                <input type="text" class="form-control" id="tituloMeta" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="tipoMetaNova" class="form-label">Tipo de Meta</label>
+                                <select class="form-select" id="tipoMetaNova" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="vendas">Vendas</option>
+                                    <option value="ticket">Ticket Médio</option>
+                                    <option value="desafios">Desafios</option>
+                                    <option value="pontos">Pontuação</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="lojaMetaNova" class="form-label">Loja/Franquia</label>
+                                <select class="form-select" id="lojaMetaNova" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="todas">Todas as Lojas</option>
+                                    <option value="1">Shopping Norte</option>
+                                    <option value="2">Shopping Sul</option>
+                                    <option value="3">Loja Centro</option>
+                                    <option value="4">Shopping Leste</option>
+                                    <option value="5">Loja Oeste</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="valorAlvo" class="form-label">Valor Alvo</label>
+                                <input type="number" class="form-control" id="valorAlvo" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="dataInicio" class="form-label">Data de Início</label>
+                                <input type="date" class="form-control" id="dataInicio" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="dataFim" class="form-label">Data de Término</label>
+                                <input type="date" class="form-control" id="dataFim" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="descricaoMeta" class="form-label">Descrição</label>
+                                <textarea class="form-control" id="descricaoMeta" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="recompensaMeta" class="form-label">Recompensa</label>
+                                <input type="text" class="form-control" id="recompensaMeta">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="pontosMeta" class="form-label">Pontos</label>
+                                <input type="number" class="form-control" id="pontosMeta">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="publicarMeta">
+                                    <label class="form-check-label" for="publicarMeta">
+                                        Publicar imediatamente
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="salvarMeta">Salvar Meta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detalhes Meta -->
+    <div class="modal fade" id="detalhesMeta" tabindex="-1" aria-labelledby="detalhesMetaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detalhesMetaLabel">Detalhes da Meta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6>Título</h6>
+                            <p id="detalheTitulo">-</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Tipo</h6>
+                            <p id="detalheTipo">-</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6>Loja/Franquia</h6>
+                            <p id="detalheLoja">-</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Status</h6>
+                            <p id="detalheStatus">-</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <h6>Valor Alvo</h6>
+                            <p id="detalheAlvo">-</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Valor Atual</h6>
+                            <p id="detalheAtual">-</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Progresso</h6>
+                            <div class="progress">
+                                <div id="detalheProgresso" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6>Data de Início</h6>
+                            <p id="detalheInicio">-</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Data de Término</h6>
+                            <p id="detalheFim">-</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <h6>Descrição</h6>
+                            <p id="detalheDescricao">-</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6>Recompensa</h6>
+                            <p id="detalheRecompensa">-</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Pontos</h6>
+                            <p id="detalhePontos">-</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <h6>Histórico de Progresso</h6>
+                            <canvas id="graficoHistoricoMeta" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-warning" id="editarMeta">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/notifications.js"></script>
+    <script src="../../js/gestor/gestao-metas.js"></script>
+    <script src="../../js/gestor/template/header.js"></script>
+    <script src="../../js/gestor/template/menu-gestor.js"></script>
+</body>
+</html>

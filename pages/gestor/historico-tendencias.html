@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico e Tendências | Sistema de Gamificação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+</head>
+<body>
+    <header class="navbar navbar-expand-lg" id="header">
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Histórico e Tendências</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="exportarRelatorio">
+                                <i data-feather="download"></i> Exportar Relatório
+                            </button>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" id="periodoDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i data-feather="calendar"></i> Período
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="periodoDropdown">
+                            <li><a class="dropdown-item periodo-option" href="#" data-periodo="7">Últimos 7 dias</a></li>
+                            <li><a class="dropdown-item periodo-option" href="#" data-periodo="30">Últimos 30 dias</a></li>
+                            <li><a class="dropdown-item periodo-option" href="#" data-periodo="90">Últimos 90 dias</a></li>
+                            <li><a class="dropdown-item periodo-option" href="#" data-periodo="180">Últimos 6 meses</a></li>
+                            <li><a class="dropdown-item periodo-option" href="#" data-periodo="365">Último ano</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#periodoPersonalizado">Período personalizado</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Filtros -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3 mb-2">
+                                        <label for="tipoAnalise" class="form-label">Tipo de Análise</label>
+                                        <select class="form-select" id="tipoAnalise">
+                                            <option value="vendas" selected>Vendas</option>
+                                            <option value="desempenho">Desempenho</option>
+                                            <option value="metas">Metas</option>
+                                            <option value="desafios">Desafios</option>
+                                            <option value="recompensas">Recompensas</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-2">
+                                        <label for="granularidade" class="form-label">Granularidade</label>
+                                        <select class="form-select" id="granularidade">
+                                            <option value="diario">Diário</option>
+                                            <option value="semanal" selected>Semanal</option>
+                                            <option value="mensal">Mensal</option>
+                                            <option value="trimestral">Trimestral</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-2">
+                                        <label for="comparativo" class="form-label">Comparativo</label>
+                                        <select class="form-select" id="comparativo">
+                                            <option value="nenhum" selected>Nenhum</option>
+                                            <option value="periodo_anterior">Período Anterior</option>
+                                            <option value="mesmo_periodo_ano_anterior">Mesmo Período Ano Anterior</option>
+                                            <option value="meta">Meta</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-2">
+                                        <label for="lojaFiltro" class="form-label">Loja/Franquia</label>
+                                        <select class="form-select" id="lojaFiltro">
+                                            <option value="todas" selected>Todas</option>
+                                            <option value="loja1">Loja Centro</option>
+                                            <option value="loja2">Loja Shopping</option>
+                                            <option value="loja3">Loja Norte</option>
+                                            <option value="loja4">Loja Sul</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-12 text-end">
+                                        <button class="btn btn-primary" id="aplicarFiltros">
+                                            <i data-feather="filter"></i> Aplicar Filtros
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indicadores Principais -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="card text-white bg-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Total de Vendas</h5>
+                                <p class="card-text display-6" id="totalVendas">R$ 0</p>
+                                <p class="card-text" id="variacaoVendas"><i data-feather="arrow-up"></i> 0%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-white bg-success">
+                            <div class="card-body">
+                                <h5 class="card-title">Ticket Médio</h5>
+                                <p class="card-text display-6" id="ticketMedio">R$ 0</p>
+                                <p class="card-text" id="variacaoTicket"><i data-feather="arrow-up"></i> 0%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-white bg-warning">
+                            <div class="card-body">
+                                <h5 class="card-title">Metas Atingidas</h5>
+                                <p class="card-text display-6" id="metasAtingidas">0%</p>
+                                <p class="card-text" id="variacaoMetas"><i data-feather="arrow-up"></i> 0%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-white bg-info">
+                            <div class="card-body">
+                                <h5 class="card-title">Engajamento</h5>
+                                <p class="card-text display-6" id="engajamento">0%</p>
+                                <p class="card-text" id="variacaoEngajamento"><i data-feather="arrow-up"></i> 0%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráfico Principal -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 id="tituloGraficoPrincipal">Evolução de Vendas</h5>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary tipo-grafico active" data-tipo="linha">Linha</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary tipo-grafico" data-tipo="barra">Barra</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary tipo-grafico" data-tipo="area">Área</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="graficoPrincipal" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráficos Secundários -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 id="tituloGraficoSecundario1">Distribuição por Categoria</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="graficoSecundario1" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 id="tituloGraficoSecundario2">Comparativo por Loja</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="graficoSecundario2" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela de Dados -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 id="tituloTabela">Dados Detalhados</h5>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-secondary" id="exportarTabela">
+                                        <i data-feather="download"></i> Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead id="cabecalhoTabela">
+                                            <!-- Cabeçalho será preenchido via JavaScript -->
+                                        </thead>
+                                        <tbody id="corpoTabela">
+                                            <!-- Dados serão preenchidos via JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Análise de Tendências -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Análise de Tendências</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <h6 class="card-title">Previsão para o Próximo Período</h6>
+                                                <div id="previsaoProximoPeriodo">
+                                                    <!-- Conteúdo será preenchido via JavaScript -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <h6 class="card-title">Insights Principais</h6>
+                                                <ul id="listaInsights">
+                                                    <!-- Conteúdo será preenchido via JavaScript -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="card-title">Recomendações</h6>
+                                                <ul id="listaRecomendacoes">
+                                                    <!-- Conteúdo será preenchido via JavaScript -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal Período Personalizado -->
+    <div class="modal fade" id="periodoPersonalizado" tabindex="-1" aria-labelledby="periodoPersonalizadoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="periodoPersonalizadoLabel">Selecionar Período Personalizado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="dataInicio" class="form-label">Data Inicial</label>
+                            <input type="date" class="form-control" id="dataInicio">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="dataFim" class="form-label">Data Final</label>
+                            <input type="date" class="form-control" id="dataFim">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="aplicarPeriodoPersonalizado">Aplicar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/notifications.js"></script>
+    <script src="../../js/gestor/historico-tendencias.js"></script>
+    <script src="../../js/gestor/template/header.js"></script>
+    <script src="../../js/gestor/template/menu-gestor.js"></script>
+</body>
+</html>

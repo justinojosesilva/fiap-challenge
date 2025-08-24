@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Desafios - Sistema de Gamificação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../img/logo.svg" alt="Logo" width="40" height="40" class="d-inline-block align-text-top me-2">
+                Sistema de Gamificação
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard-admin.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Desafios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Relatórios</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <span id="username">Admin</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1>Cadastro de Desafios</h1>
+                <p>Crie e gerencie desafios para os vendedores.</p>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-8 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="mb-0">Novo Desafio</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="desafioForm">
+                            <div class="mb-3">
+                                <label for="nomeDesafio" class="form-label">Nome do Desafio</label>
+                                <input type="text" class="form-control" id="nomeDesafio" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="descricaoDesafio" class="form-label">Descrição</label>
+                                <textarea class="form-control" id="descricaoDesafio" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="metaDesafio" class="form-label">Meta</label>
+                                    <input type="number" class="form-control" id="metaDesafio" min="1" required>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="pontosDesafio" class="form-label">Pontos</label>
+                                    <input type="number" class="form-control" id="pontosDesafio" min="1" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="dataInicio" class="form-label">Data de Início</label>
+                                    <input type="date" class="form-control" id="dataInicio" required>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="dataFim" class="form-label">Data de Término</label>
+                                    <input type="date" class="form-control" id="dataFim" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="tipoDesafio" class="form-label">Tipo de Desafio</label>
+                                <select class="form-select" id="tipoDesafio" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="vendas">Vendas</option>
+                                    <option value="cortes_premium">Cortes Premium</option>
+                                    <option value="avaliacao">Avaliação de Clientes</option>
+                                    <option value="ticket_medio">Ticket Médio</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="lojaDesafio" class="form-label">Aplicável a</label>
+                                <select class="form-select" id="lojaDesafio" required>
+                                    <option value="todas">Todas as Lojas</option>
+                                    <option value="proprias">Apenas Lojas Próprias</option>
+                                    <option value="franquias">Apenas Franquias</option>
+                                    <option value="loja_central">Loja Central</option>
+                                    <option value="loja_sul">Loja Sul</option>
+                                    <option value="franquia_shopping">Franquia Shopping</option>
+                                    <option value="franquia_norte">Franquia Norte</option>
+                                </select>
+                            </div>
+                            
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-secondary me-2" id="cancelarBtn">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Salvar Desafio</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="mb-0">Dicas</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <h3>Criando Desafios Efetivos</h3>
+                            <ul>
+                                <li>Defina metas alcançáveis mas desafiadoras</li>
+                                <li>Estabeleça prazos razoáveis</li>
+                                <li>Ofereça pontos proporcionais à dificuldade</li>
+                                <li>Use descrições claras e motivadoras</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3>Tipos de Desafios Populares</h3>
+                            <ul>
+                                <li>Venda de cortes premium</li>
+                                <li>Aumento de ticket médio</li>
+                                <li>Obtenção de avaliações positivas</li>
+                                <li>Vendas cruzadas (acompanhamentos)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="mb-0">Desafios Ativos</h2>
+                        <div class="input-group" style="max-width: 300px;">
+                            <input type="text" class="form-control" placeholder="Buscar desafios..." id="searchDesafios">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i data-feather="search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Tipo</th>
+                                        <th>Meta</th>
+                                        <th>Pontos</th>
+                                        <th>Período</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Venda de Picanha Premium</td>
+                                        <td>Cortes Premium</td>
+                                        <td>5 unidades</td>
+                                        <td>200</td>
+                                        <td>01/07 - 07/07</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary me-1">
+                                                <i data-feather="edit-2"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger">
+                                                <i data-feather="trash-2"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Avaliações 5 Estrelas</td>
+                                        <td>Avaliação</td>
+                                        <td>10 avaliações</td>
+                                        <td>150</td>
+                                        <td>01/07 - 31/07</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary me-1">
+                                                <i data-feather="edit-2"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger">
+                                                <i data-feather="trash-2"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ticket Médio Acima de R$ 100</td>
+                                        <td>Ticket Médio</td>
+                                        <td>15 vendas</td>
+                                        <td>300</td>
+                                        <td>15/07 - 15/08</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary me-1">
+                                                <i data-feather="edit-2"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger">
+                                                <i data-feather="trash-2"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-5 py-3">
+        <div class="container text-center">
+            <span class="text-muted">Sistema de Gamificação para Vendas de Açougue e Cortes Finos &copy; 2023</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/desafios.js"></script>
+</body>
+</html>

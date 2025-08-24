@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exportação de Relatórios | Sistema de Gamificação</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Sistema de Gamificação</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="w-100"></div>
+        <div class="navbar-nav">
+            <div class="nav-item text-nowrap d-flex align-items-center">
+                <a class="nav-link px-3 me-2" href="#" id="notificacoes" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i data-feather="bell"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificacoes-contador">
+                        0
+                    </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="notificacoes" style="width: 300px;">
+                    <div class="list-group list-group-flush" id="lista-notificacoes">
+                        <!-- Notificações serão inseridas aqui via JavaScript -->
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-center" href="alertas.html">Ver todas</a>
+                </div>
+                <a class="nav-link px-3" href="#" id="logout">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Barra lateral -->
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">
+                                <i data-feather="home"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ranking.html">
+                                <i data-feather="award"></i>
+                                Ranking
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="gestao-metas.html">
+                                <i data-feather="target"></i>
+                                Gestão de Metas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="controle-desafios.html">
+                                <i data-feather="flag"></i>
+                                Controle de Desafios
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="historico-tendencias.html">
+                                <i data-feather="trending-up"></i>
+                                Histórico e Tendências
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="gestao-recompensas.html">
+                                <i data-feather="gift"></i>
+                                Gestão de Recompensas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="alertas.html">
+                                <i data-feather="bell"></i>
+                                Alertas Inteligentes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="exportacao-relatorios.html">
+                                <i data-feather="file-text"></i>
+                                Exportação de Relatórios
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Conteúdo principal -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Exportação de Relatórios</h1>
+                </div>
+
+                <!-- Tipos de relatórios -->
+                <div class="mb-4">
+                    <h4>Tipos de Relatórios</h4>
+                    <div class="row" id="tiposRelatorios">
+                        <!-- Cards de tipos de relatórios serão inseridos aqui via JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Filtros de relatório -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Configurar Relatório</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="formRelatorio">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="tipoRelatorio" class="form-label">Tipo de Relatório</label>
+                                    <select class="form-select" id="tipoRelatorio" required>
+                                        <option value="">Selecione...</option>
+                                        <!-- Opções serão inseridas aqui via JavaScript -->
+                                    </select>
+                                </div>
+                                <div class="col-md-6" id="filtroFormato">
+                                    <label for="formatoRelatorio" class="form-label">Formato</label>
+                                    <select class="form-select" id="formatoRelatorio" required>
+                                        <option value="csv">CSV</option>
+                                        <option value="json">JSON</option>
+                                        <option value="txt">TXT</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3" id="filtroPeriodo">
+                                <div class="col-md-6">
+                                    <label for="periodoPredefinido" class="form-label">Período</label>
+                                    <select class="form-select" id="periodoPredefinido">
+                                        <option value="hoje">Hoje</option>
+                                        <option value="ontem">Ontem</option>
+                                        <option value="7dias">Últimos 7 dias</option>
+                                        <option value="30dias">Últimos 30 dias</option>
+                                        <option value="mes_atual">Mês atual</option>
+                                        <option value="mes_anterior">Mês anterior</option>
+                                        <option value="ano_atual">Ano atual</option>
+                                        <option value="personalizado">Personalizado</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6" id="periodoPersonalizado" style="display: none;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="periodoInicio" class="form-label">Data Início</label>
+                                            <input type="date" class="form-control" id="periodoInicio">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="periodoFim" class="form-label">Data Fim</label>
+                                            <input type="date" class="form-control" id="periodoFim">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Filtros específicos por tipo de relatório -->
+                            <div class="row mb-3 filtro-especifico" id="filtroLoja" style="display: none;">
+                                <div class="col-md-6">
+                                    <label for="loja" class="form-label">Loja/Franquia</label>
+                                    <select class="form-select" id="loja">
+                                        <option value="">Todas</option>
+                                        <option value="centro">Centro</option>
+                                        <option value="shopping">Shopping</option>
+                                        <option value="norte">Zona Norte</option>
+                                        <option value="sul">Zona Sul</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 filtro-especifico" id="filtroVendedor" style="display: none;">
+                                <div class="col-md-6">
+                                    <label for="vendedor" class="form-label">Vendedor</label>
+                                    <select class="form-select" id="vendedor">
+                                        <option value="">Todos</option>
+                                        <option value="joao">João Silva</option>
+                                        <option value="maria">Maria Oliveira</option>
+                                        <option value="pedro">Pedro Santos</option>
+                                        <option value="ana">Ana Souza</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 filtro-especifico" id="filtroProduto" style="display: none;">
+                                <div class="col-md-6">
+                                    <label for="produto" class="form-label">Produto</label>
+                                    <select class="form-select" id="produto">
+                                        <option value="">Todos</option>
+                                        <option value="produtoA">Produto A</option>
+                                        <option value="produtoB">Produto B</option>
+                                        <option value="produtoC">Produto C</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 filtro-especifico" id="filtroTipoMeta" style="display: none;">
+                                <div class="col-md-6">
+                                    <label for="tipoMeta" class="form-label">Tipo de Meta</label>
+                                    <select class="form-select" id="tipoMeta">
+                                        <option value="">Todos</option>
+                                        <option value="vendas">Vendas</option>
+                                        <option value="captacao">Captação</option>
+                                        <option value="desenvolvimento">Desenvolvimento</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 filtro-especifico" id="filtroCategoria" style="display: none;">
+                                <div class="col-md-6">
+                                    <label for="categoria" class="form-label">Categoria</label>
+                                    <select class="form-select" id="categoria">
+                                        <option value="">Todas</option>
+                                        <option value="vendas">Vendas</option>
+                                        <option value="atendimento">Atendimento</option>
+                                        <option value="conhecimento">Conhecimento</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 filtro-especifico" id="filtroDificuldade" style="display: none;">
+                                <div class="col-md-6">
+                                    <label for="dificuldade" class="form-label">Dificuldade</label>
+                                    <select class="form-select" id="dificuldade">
+                                        <option value="">Todas</option>
+                                        <option value="facil">Fácil</option>
+                                        <option value="media">Média</option>
+                                        <option value="dificil">Difícil</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 filtro-especifico" id="filtroStatus" style="display: none;">
+                                <div class="col-md-6">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select class="form-select" id="status">
+                                        <option value="">Todos</option>
+                                        <option value="ativo">Ativo</option>
+                                        <option value="concluido">Concluído</option>
+                                        <option value="pendente">Pendente</option>
+                                        <option value="atrasado">Atrasado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 filtro-especifico" id="filtroResponsavel" style="display: none;">
+                                <div class="col-md-6">
+                                    <label for="responsavel" class="form-label">Responsável</label>
+                                    <select class="form-select" id="responsavel">
+                                        <option value="">Todos</option>
+                                        <option value="carlos">Carlos Silva</option>
+                                        <option value="ana">Ana Souza</option>
+                                        <option value="joao">João Silva</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 filtro-especifico" id="filtroIndicador" style="display: none;">
+                                <div class="col-md-6">
+                                    <label for="indicador" class="form-label">Indicador</label>
+                                    <select class="form-select" id="indicador">
+                                        <option value="">Todos</option>
+                                        <option value="vendas">Vendas</option>
+                                        <option value="conversao">Taxa de Conversão</option>
+                                        <option value="ticket">Ticket Médio</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 filtro-especifico" id="filtroTipoPonto" style="display: none;">
+                                <div class="col-md-6">
+                                    <label for="tipoPonto" class="form-label">Tipo de Ponto</label>
+                                    <select class="form-select" id="tipoPonto">
+                                        <option value="">Todos</option>
+                                        <option value="acumulados">Acumulados</option>
+                                        <option value="resgatados">Resgatados</option>
+                                        <option value="disponiveis">Disponíveis</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-primary" id="gerarRelatorio">
+                                    <i data-feather="download"></i> Gerar Relatório
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary" id="agendarRelatorio">
+                                    <i data-feather="clock"></i> Agendar Relatório
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Relatórios recentes -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0">Relatórios Recentes</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Nome</th>
+                                                <th>Data</th>
+                                                <th>Formato</th>
+                                                <th>Período</th>
+                                                <th class="text-end">Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="relatoriosRecentes">
+                                            <!-- Relatórios recentes serão inseridos aqui via JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Relatórios agendados -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0">Relatórios Agendados</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Nome</th>
+                                                <th>Tipo</th>
+                                                <th>Frequência</th>
+                                                <th>Próxima Execução</th>
+                                                <th class="text-end">Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="relatoriosAgendados">
+                                            <!-- Relatórios agendados serão inseridos aqui via JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal de agendamento de relatório -->
+    <div class="modal fade" id="modalAgendarRelatorio" tabindex="-1" aria-labelledby="modalAgendarRelatorioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAgendarRelatorioLabel">Agendar Relatório</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAgendamento">
+                        <input type="hidden" id="agendamentoId">
+                        <input type="hidden" id="agendamentoTipo">
+                        <input type="hidden" id="agendamentoFormato">
+
+                        <div class="mb-3">
+                            <label for="agendamentoNome" class="form-label">Nome do Agendamento</label>
+                            <input type="text" class="form-control" id="agendamentoNome" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="agendamentoFrequencia" class="form-label">Frequência</label>
+                            <select class="form-select" id="agendamentoFrequencia" required>
+                                <option value="">Selecione...</option>
+                                <option value="diario">Diário</option>
+                                <option value="semanal">Semanal</option>
+                                <option value="quinzenal">Quinzenal</option>
+                                <option value="mensal">Mensal</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="agendamentoDestinatarios" class="form-label">Destinatários (e-mails separados por vírgula)</label>
+                            <input type="text" class="form-control" id="agendamentoDestinatarios" placeholder="exemplo@email.com, outro@email.com">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="salvarAgendamento">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de sucesso -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="toastSucesso" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Sistema de Gamificação</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Fechar"></button>
+            </div>
+            <div class="toast-body" id="toastMensagem">
+                Operação realizada com sucesso!
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/exportacao-relatorios.js"></script>
+</body>
+</html>

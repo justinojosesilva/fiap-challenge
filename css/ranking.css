@@ -1,0 +1,142 @@
+/* Estilos específicos para a página de ranking */
+
+.ranking-period {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: rgba(var(--primary-rgb), 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+}
+
+/* Estilos para o pódio */
+.ranking-podium {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 2rem 0;
+    gap: 1.5rem;
+}
+
+.podium-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 150px;
+    transition: transform 0.3s ease;
+}
+
+.podium-item:hover {
+    transform: translateY(-5px);
+}
+
+.podium-first {
+    background: linear-gradient(to bottom, #ffd700, #f8f9fa);
+    height: 220px;
+    z-index: 3;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.podium-second {
+    background: linear-gradient(to bottom, #c0c0c0, #f8f9fa);
+    height: 190px;
+    z-index: 2;
+    box-shadow: 0 4px 10px rgba(192, 192, 192, 0.3);
+}
+
+.podium-third {
+    background: linear-gradient(to bottom, #cd7f32, #f8f9fa);
+    height: 170px;
+    z-index: 1;
+    box-shadow: 0 4px 10px rgba(205, 127, 50, 0.3);
+}
+
+.podium-avatar {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.podium-avatar svg {
+    width: 40px;
+    height: 40px;
+    color: var(--dark-color);
+}
+
+.podium-position {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 25px;
+    height: 25px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.podium-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.podium-points {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+}
+
+.podium-level {
+    font-size: 0.9rem;
+    color: var(--dark-color);
+    opacity: 0.8;
+}
+
+/* Destaque para a linha do usuário atual na tabela */
+.table-active {
+    background-color: rgba(var(--primary-rgb), 0.1) !important;
+    font-weight: 600;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .ranking-podium {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .podium-item {
+        width: 100%;
+        max-width: 200px;
+        height: auto !important;
+        padding: 1rem;
+    }
+    
+    .podium-first {
+        order: 1;
+    }
+    
+    .podium-second {
+        order: 2;
+    }
+    
+    .podium-third {
+        order: 3;
+    }
+}

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking de Lojas - Sistema de Gamificação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/ranking.css">
+</head>
+<body>
+    <header class="navbar navbar-expand-lg" id="header"></header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            </nav>
+            <!-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard-gerente.html">
+                                <i data-feather="home"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i data-feather="bar-chart-2"></i>
+                                Ranking
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="metasLink">
+                                <i data-feather="target"></i>
+                                Gestão de Metas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cadastro-desafio.html" id="desafiosLink">
+                                <i data-feather="award"></i>
+                                Controle de Desafios
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="historicoLink">
+                                <i data-feather="trending-up"></i>
+                                Histórico e Tendências
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="recompensasLink">
+                                <i data-feather="gift"></i>
+                                Gestão de Recompensas
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav> -->
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Ranking de Lojas e Franquias</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="exportarRanking">Exportar</button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="periodoDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i data-feather="calendar"></i>
+                                Este mês
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="periodoDropdown">
+                                <li><a class="dropdown-item periodo-filtro" href="#" data-periodo="semana">Esta semana</a></li>
+                                <li><a class="dropdown-item periodo-filtro" href="#" data-periodo="mes">Este mês</a></li>
+                                <li><a class="dropdown-item periodo-filtro" href="#" data-periodo="trimestre">Este trimestre</a></li>
+                                <li><a class="dropdown-item periodo-filtro" href="#" data-periodo="ano">Este ano</a></li>
+                                <li><a class="dropdown-item periodo-filtro" href="#" data-periodo="geral">Geral</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Filtros</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="tipoRanking" class="form-label">Tipo de Ranking</label>
+                                    <select class="form-select" id="tipoRanking">
+                                        <option value="pontos" selected>Pontuação Total</option>
+                                        <option value="vendas">Volume de Vendas</option>
+                                        <option value="ticket">Ticket Médio</option>
+                                        <option value="desafios">Desafios Concluídos</option>
+                                        <option value="crescimento">Crescimento</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="regiaoRanking" class="form-label">Região</label>
+                                    <select class="form-select" id="regiaoRanking">
+                                        <option value="todas" selected>Todas</option>
+                                        <option value="norte">Norte</option>
+                                        <option value="sul">Sul</option>
+                                        <option value="leste">Leste</option>
+                                        <option value="oeste">Oeste</option>
+                                        <option value="centro">Centro</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="tipoLoja" class="form-label">Tipo de Loja</label>
+                                    <select class="form-select" id="tipoLoja">
+                                        <option value="todas" selected>Todas</option>
+                                        <option value="proprias">Lojas Próprias</option>
+                                        <option value="franquias">Franquias</option>
+                                        <option value="quiosques">Quiosques</option>
+                                    </select>
+                                </div>
+                                
+                                <button type="button" class="btn btn-primary w-100" id="filtrarBtn">Aplicar Filtros</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-8 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Top 3 Lojas</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="podium-container">
+                                    <div class="podium-item second-place">
+                                        <div class="avatar">
+                                            <i data-feather="shopping-bag"></i>
+                                            <div class="medal">🥈</div>
+                                        </div>
+                                        <div class="name" id="secondPlaceName">Shopping Sul</div>
+                                        <div class="points" id="secondPlacePoints">8.750 pts</div>
+                                        <div class="level">Franquia Ouro</div>
+                                    </div>
+                                    <div class="podium-item first-place">
+                                        <div class="avatar">
+                                            <i data-feather="shopping-bag"></i>
+                                            <div class="medal">🥇</div>
+                                        </div>
+                                        <div class="name" id="firstPlaceName">Shopping Norte</div>
+                                        <div class="points" id="firstPlacePoints">9.850 pts</div>
+                                        <div class="level">Franquia Diamante</div>
+                                    </div>
+                                    <div class="podium-item third-place">
+                                        <div class="avatar">
+                                            <i data-feather="shopping-bag"></i>
+                                            <div class="medal">🥉</div>
+                                        </div>
+                                        <div class="name" id="thirdPlaceName">Loja Centro</div>
+                                        <div class="points" id="thirdPlacePoints">7.500 pts</div>
+                                        <div class="level">Loja Própria Ouro</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Ranking Completo</h5>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="mostrarDetalhes">
+                                    <label class="form-check-label" for="mostrarDetalhes">Mostrar detalhes</label>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Loja</th>
+                                                <th scope="col">Tipo</th>
+                                                <th scope="col">Região</th>
+                                                <th scope="col">Vendas (R$)</th>
+                                                <th scope="col">Ticket Médio</th>
+                                                <th scope="col">Pontos</th>
+                                                <th scope="col">Nível</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="rankingTable">
+                                            <!-- Dados serão inseridos via JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Comparativo de Desempenho</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="comparativoLojas" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal de Detalhes da Loja -->
+    <div class="modal fade" id="lojaDetalhesModal" tabindex="-1" aria-labelledby="lojaDetalhesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="lojaDetalhesModalLabel">Detalhes da Loja</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Informações Gerais</h6>
+                            <p><strong>Nome:</strong> <span id="modalLojaNome"></span></p>
+                            <p><strong>Tipo:</strong> <span id="modalLojaTipo"></span></p>
+                            <p><strong>Região:</strong> <span id="modalLojaRegiao"></span></p>
+                            <p><strong>Gerente:</strong> <span id="modalLojaGerente"></span></p>
+                            <p><strong>Nível:</strong> <span id="modalLojaNivel"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Métricas</h6>
+                            <p><strong>Vendas:</strong> <span id="modalLojaVendas"></span></p>
+                            <p><strong>Ticket Médio:</strong> <span id="modalLojaTicket"></span></p>
+                            <p><strong>Pontos:</strong> <span id="modalLojaPontos"></span></p>
+                            <p><strong>Crescimento:</strong> <span id="modalLojaCrescimento"></span></p>
+                            <p><strong>Status:</strong> <span id="modalLojaStatus"></span></p>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <h6>Top Vendedores</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Vendedor</th>
+                                            <th>Vendas (R$)</th>
+                                            <th>Pontos</th>
+                                            <th>Nível</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="modalLojaVendedores">
+                                        <!-- Dados serão inseridos via JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <h6>Evolução de Vendas</h6>
+                            <canvas id="modalLojaEvolucao" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="verRelatorioCompleto">Ver Relatório Completo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/gestor/template/header.js"></script>
+    <script src="../../js/notifications.js"></script>
+    <script src="../../js/gestor/ranking-lojas.js"></script>
+    <script src="../../js/gestor/template/menu-gestor.js" defer></script>
+</body>
+</html>
