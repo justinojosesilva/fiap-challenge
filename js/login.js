@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function redirecionarUsuario(user) {
     if (user.role === 'vendedor') {
-        window.location.href = 'pages/dashboard-vendedor.html';
+        window.location.href = 'pages/vendedor/dashboard-vendedor.html';
     } else if (user.role === 'gestor') {
         window.location.href = 'pages/gestor/dashboard-gestor.html';
     } else if (user.role === 'admin') {

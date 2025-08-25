@@ -4,94 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exportação de Relatórios | Sistema de Gamificação</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
 </head>
 <body>
     <!-- Cabeçalho -->
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Sistema de Gamificação</a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="w-100"></div>
-        <div class="navbar-nav">
-            <div class="nav-item text-nowrap d-flex align-items-center">
-                <a class="nav-link px-3 me-2" href="#" id="notificacoes" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i data-feather="bell"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificacoes-contador">
-                        0
-                    </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="notificacoes" style="width: 300px;">
-                    <div class="list-group list-group-flush" id="lista-notificacoes">
-                        <!-- Notificações serão inseridas aqui via JavaScript -->
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-center" href="alertas.html">Ver todas</a>
-                </div>
-                <a class="nav-link px-3" href="#" id="logout">Sair</a>
-            </div>
-        </div>
+    <header class="navbar navbar-expand-lg" id="header">
     </header>
 
     <div class="container-fluid">
         <div class="row">
             <!-- Barra lateral -->
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard.html">
-                                <i data-feather="home"></i>
-                                Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="ranking.html">
-                                <i data-feather="award"></i>
-                                Ranking
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="gestao-metas.html">
-                                <i data-feather="target"></i>
-                                Gestão de Metas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="controle-desafios.html">
-                                <i data-feather="flag"></i>
-                                Controle de Desafios
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="historico-tendencias.html">
-                                <i data-feather="trending-up"></i>
-                                Histórico e Tendências
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="gestao-recompensas.html">
-                                <i data-feather="gift"></i>
-                                Gestão de Recompensas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="alertas.html">
-                                <i data-feather="bell"></i>
-                                Alertas Inteligentes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="exportacao-relatorios.html">
-                                <i data-feather="file-text"></i>
-                                Exportação de Relatórios
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
             </nav>
 
             <!-- Conteúdo principal -->
@@ -417,8 +344,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/notifications.js"></script>
-    <script src="../js/exportacao-relatorios.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/notifications.js"></script>
+    <script src="../../js/gestor/template/header.js"></script>
+    <script src="../../js/gestor/template/menu-gestor.js"></script>
+    <script src="../../js/gestor/exportacao-relatorios.js"></script>
 </body>
 </html>

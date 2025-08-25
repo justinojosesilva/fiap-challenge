@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     feather.replace();
     
     // Verifica autenticação - apenas gerentes e admins podem acessar
-    verificarAutenticacao(['gerente', 'admin']);
+    verificarAutenticacao(['gestor', 'admin']);
     
     // Inicializa o sistema de notificações
     inicializarNotificacoes();
@@ -37,20 +37,27 @@ document.addEventListener('DOMContentLoaded', function() {
  * @param {Array} perfisPermitidos - Array com os perfis que podem acessar a página
  */
 function verificarAutenticacao(perfisPermitidos) {
-    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    // const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     
-    if (!usuarioLogado) {
-        window.location.href = '../index.html';
+    // if (!usuarioLogado) {
+    //     window.location.href = '../index.html';
+    //     return;
+    // }
+    
+    // if (!perfisPermitidos.includes(usuarioLogado.perfil)) {
+    //     alert('Você não tem permissão para acessar esta página');
+    //     window.location.href = 'dashboard.html';
+    // }
+
+        // Verifica autenticação
+    const currentUser = Auth.getCurrentUser();
+    if (!currentUser || (currentUser.role !== 'gestor' && currentUser.role !== 'admin')) {
+        window.location.href = '../../index.html';
         return;
     }
     
-    if (!perfisPermitidos.includes(usuarioLogado.perfil)) {
-        alert('Você não tem permissão para acessar esta página');
-        window.location.href = 'dashboard.html';
-    }
-    
     // Exibe o nome do usuário logado
-    document.querySelector('.navbar-brand').textContent = `Sistema de Gamificação | ${usuarioLogado.nome}`;
+    //document.querySelector('.navbar-brand').textContent = `Sistema de Gamificação | ${usuarioLogado.nome}`;
 }
 
 /**

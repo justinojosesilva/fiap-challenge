@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico do Vendedor - Sistema de Gamificação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark" id="header">
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            </nav>
+            <!-- Conteúdo Principal -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+                <!-- Conteúdo da Página -->
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <div class="col-12">
+                        <h1>Histórico de Atividades</h1>
+                        <p>Acompanhe seu histórico de desafios, pontos e conquistas.</p>
+                    </div>
+                </div>
+
+                <!-- Filtros -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card dashboard-card">
+                            <div class="card-body">
+                                <h3>Filtros</h3>
+                                <form class="row g-3">
+                                    <div class="col-md-4">
+                                        <label for="tipoAtividade" class="form-label">Tipo de Atividade</label>
+                                        <select class="form-select" id="tipoAtividade">
+                                            <option value="todos" selected>Todos</option>
+                                            <option value="desafios">Desafios</option>
+                                            <option value="pontos">Pontos</option>
+                                            <option value="recompensas">Recompensas</option>
+                                            <option value="niveis">Níveis</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="dataInicio" class="form-label">Data Início</label>
+                                        <input type="date" class="form-control" id="dataInicio">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="dataFim" class="form-label">Data Fim</label>
+                                        <input type="date" class="form-control" id="dataFim">
+                                    </div>
+                                    <div class="col-12 text-end">
+                                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                                        <button type="reset" class="btn btn-secondary">Limpar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                                <!-- Resumo de Pontos -->
+                <div class="row mt-4 mb-5">
+                    <div class="col-12">
+                        <div class="card dashboard-card">
+                            <div class="card-body">
+                                <h3>Resumo de Pontos</h3>
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <h5>Total Acumulado</h5>
+                                                <p class="dashboard-value">2.450</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <h5>Pontos Gastos</h5>
+                                                <p class="dashboard-value">1.200</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <h5>Pontos Disponíveis</h5>
+                                                <p class="dashboard-value">1.250</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <h5>Média Mensal</h5>
+                                                <p class="dashboard-value">850</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Histórico de Atividades -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card dashboard-card">
+                            <div class="card-body">
+                                <h3>Histórico de Atividades</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Data</th>
+                                                <th>Tipo</th>
+                                                <th>Descrição</th>
+                                                <th>Pontos</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>15/06/2023</td>
+                                                <td><span class="badge bg-primary">Desafio</span></td>
+                                                <td>Completou o desafio "Cortes Premium"</td>
+                                                <td>+200</td>
+                                                <td><span class="badge bg-success">Concluído</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>12/06/2023</td>
+                                                <td><span class="badge bg-warning">Nível</span></td>
+                                                <td>Subiu para o Nível 3 - Vendedor Prata</td>
+                                                <td>-</td>
+                                                <td><span class="badge bg-success">Concluído</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>10/06/2023</td>
+                                                <td><span class="badge bg-info">Recompensa</span></td>
+                                                <td>Resgatou "Vale-presente R$50"</td>
+                                                <td>-500</td>
+                                                <td><span class="badge bg-success">Concluído</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>08/06/2023</td>
+                                                <td><span class="badge bg-primary">Desafio</span></td>
+                                                <td>Completou o desafio "Vendas Online"</td>
+                                                <td>+300</td>
+                                                <td><span class="badge bg-success">Concluído</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>05/06/2023</td>
+                                                <td><span class="badge bg-primary">Desafio</span></td>
+                                                <td>Completou o desafio "Fidelização"</td>
+                                                <td>+150</td>
+                                                <td><span class="badge bg-success">Concluído</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>01/06/2023</td>
+                                                <td><span class="badge bg-primary">Desafio</span></td>
+                                                <td>Iniciou o desafio "Cortes Premium"</td>
+                                                <td>-</td>
+                                                <td><span class="badge bg-warning">Em andamento</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>28/05/2023</td>
+                                                <td><span class="badge bg-primary">Desafio</span></td>
+                                                <td>Completou o desafio "Vendas Mensais"</td>
+                                                <td>+250</td>
+                                                <td><span class="badge bg-success">Concluído</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div>
+                                        <span>Mostrando 1-7 de 42 registros</span>
+                                    </div>
+                                    <nav aria-label="Paginação do histórico">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                                            </li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#">Próximo</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Footer -->
+                <footer class="footer mt-auto py-3 bg-light">
+                    <div class="container text-center">
+                        <span class="text-muted">© 2025 Sistema de Gamificação - Todos os direitos reservados</span>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- <script src="../assets/js/script.js"></script>-->
+    <script src="../../js/vendedor/historico-vendedor.js"></script> 
+    <script src="../../js/vendedor/template/header.js"></script>
+    <script src="../../js/vendedor/template/menu-vendedor.js"></script>
+    <script>
+        // Inicializa os ícones Feather
+        feather.replace();
+    </script>
+</body>
+</html>

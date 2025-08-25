@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <a class="navbar-brand" href="#">
+      <img src="../../../img/logo.svg" alt="Logo" width="40" height="40" class="d-inline-block align-text-top me-2">
+      Sistema de Gamificação
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown">
+                  <i data-feather="bell"></i>
+                  <span class="notification-counter">3</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" id="notificationContainer" style="width: 300px;">
+                  <!-- Conteúdo será preenchido pelo JavaScript -->
+              </ul>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                  <span id="username">Vendedor</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
+                  <li><a class="dropdown-item" href="#">Configurações</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#" id="logoutBtn" onclick="logoutBtn(event)">Sair</a></li>
+              </ul>
+          </li>
+      </ul>
+  </div>
+</div>

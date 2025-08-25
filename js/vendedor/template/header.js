@@ -1,28 +1,14 @@
-/**
- * Script para gerenciar as funcionalidades do dashboard
- * Inicializa os ícones, gerencia o logout e carrega dados do usuário
- */
-document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar ícones Feather
-    feather.replace();
-    
-    // Verificar autenticação
-    const currentUser = Auth.getCurrentUser();
-    if (!currentUser) {
-        window.location.href = '../index.html';
-        return;
-    }
-    
-    // Atualizar nome do usuário na barra de navegação
-    document.getElementById('username').textContent = currentUser.nome || currentUser.username;
-    
-    // Configurar evento de logout
-    document.getElementById('logoutBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-        Auth.logout();
+function carregarHeader() {
+    fetch('../vendedor/template/header.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('header').innerHTML = data;
+        feather.replace();
     });
-    
-    // Inicializar sistema de notificações
+}
+
+function carregarNotificacoes() {
+  // Inicializar sistema de notificações
     if (document.getElementById('notificationContainer')) {
         Notifications.renderNotificationDropdown('notificationContainer');
         
@@ -36,7 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
         showNotification('Novo desafio disponível!', 'info');
     }, 3000);
-});
+}
+
+/**
+ * Função para logout do usuário
+ * @param {Event} e - Evento de clique
+ */
+function logoutBtn(e) {
+    e.preventDefault();
+    Auth.logout();
+}
 
 /**
  * Exibe uma notificação temporária para o usuário
@@ -76,3 +71,6 @@ function showNotification(message, type = 'info') {
         }
     }, 5000);
 }
+
+carregarHeader();
+carregarNotificacoes();

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking - Sistema de Gamificação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/ranking.css">
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark" id="header">
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            </nav>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1>Ranking de Vendedores</h1>
+                </div>
+        
+
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="mb-0">Filtros</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="periodoRanking" class="form-label">Período</label>
+                                    <select class="form-select" id="periodoRanking">
+                                        <option value="semanal">Semanal</option>
+                                        <option value="mensal" selected>Mensal</option>
+                                        <option value="trimestral">Trimestral</option>
+                                        <option value="anual">Anual</option>
+                                        <option value="geral">Geral</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="tipoRanking" class="form-label">Tipo de Ranking</label>
+                                    <select class="form-select" id="tipoRanking">
+                                        <option value="pontos" selected>Pontos</option>
+                                        <option value="desafios">Desafios Concluídos</option>
+                                        <option value="vendas">Volume de Vendas</option>
+                                        <option value="cortes_premium">Cortes Premium</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="lojaRanking" class="form-label">Loja</label>
+                                    <select class="form-select" id="lojaRanking">
+                                        <option value="todas" selected>Todas</option>
+                                        <option value="proprias">Lojas Próprias</option>
+                                        <option value="franquias">Franquias</option>
+                                        <option value="loja_central">Loja Central</option>
+                                        <option value="loja_sul">Loja Sul</option>
+                                        <option value="franquia_shopping">Franquia Shopping</option>
+                                        <option value="franquia_norte">Franquia Norte</option>
+                                    </select>
+                                </div>
+                                
+                                <button type="button" class="btn btn-primary w-100" id="filtrarBtn">Aplicar Filtros</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-8 mb-4">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h2 class="mb-0">Top Vendedores</h2>
+                                <div class="ranking-period">Julho/2023</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="ranking-podium">
+                                    <div class="podium-item podium-second">
+                                        <div class="podium-avatar">
+                                            <i data-feather="user"></i>
+                                            <span class="podium-position">2</span>
+                                        </div>
+                                        <div class="podium-name">Ana Oliveira</div>
+                                        <div class="podium-points">1.980 pts</div>
+                                        <div class="podium-level">Nível 4</div>
+                                    </div>
+                                    
+                                    <div class="podium-item podium-first">
+                                        <div class="podium-avatar">
+                                            <i data-feather="user"></i>
+                                            <span class="podium-position">1</span>
+                                        </div>
+                                        <div class="podium-name">Carlos Silva</div>
+                                        <div class="podium-points">2.450 pts</div>
+                                        <div class="podium-level">Nível 5</div>
+                                    </div>
+                                    
+                                    <div class="podium-item podium-third">
+                                        <div class="podium-avatar">
+                                            <i data-feather="user"></i>
+                                            <span class="podium-position">3</span>
+                                        </div>
+                                        <div class="podium-name">Roberto Almeida</div>
+                                        <div class="podium-points">1.875 pts</div>
+                                        <div class="podium-level">Nível 4</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="table-responsive mt-4">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Posição</th>
+                                                <th>Vendedor</th>
+                                                <th>Loja</th>
+                                                <th>Nível</th>
+                                                <th>Pontos</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="table-warning">
+                                                <td>1</td>
+                                                <td>Carlos Silva</td>
+                                                <td>Loja Central</td>
+                                                <td>5</td>
+                                                <td>2.450</td>
+                                            </tr>
+                                            <tr class="table-secondary">
+                                                <td>2</td>
+                                                <td>Ana Oliveira</td>
+                                                <td>Franquia Shopping</td>
+                                                <td>4</td>
+                                                <td>1.980</td>
+                                            </tr>
+                                            <tr class="table-info">
+                                                <td>3</td>
+                                                <td>Roberto Almeida</td>
+                                                <td>Loja Sul</td>
+                                                <td>4</td>
+                                                <td>1.875</td>
+                                            </tr>
+                                            <tr class="table-active">
+                                                <td>4</td>
+                                                <td>Você</td>
+                                                <td>Loja Central</td>
+                                                <td>3</td>
+                                                <td>1.250</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>Juliana Costa</td>
+                                                <td>Franquia Norte</td>
+                                                <td>3</td>
+                                                <td>1.120</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>Marcos Pereira</td>
+                                                <td>Loja Central</td>
+                                                <td>3</td>
+                                                <td>980</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>Fernanda Lima</td>
+                                                <td>Franquia Shopping</td>
+                                                <td>2</td>
+                                                <td>820</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8</td>
+                                                <td>Ricardo Santos</td>
+                                                <td>Loja Sul</td>
+                                                <td>2</td>
+                                                <td>750</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="mb-0">Ranking de Lojas</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Posição</th>
+                                                <th>Loja</th>
+                                                <th>Tipo</th>
+                                                <th>Pontos Totais</th>
+                                                <th>Média por Vendedor</th>
+                                                <th>Desafios Concluídos</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="table-warning">
+                                                <td>1</td>
+                                                <td>Loja Central</td>
+                                                <td>Própria</td>
+                                                <td>8.450</td>
+                                                <td>1.690</td>
+                                                <td>42</td>
+                                            </tr>
+                                            <tr class="table-secondary">
+                                                <td>2</td>
+                                                <td>Franquia Shopping</td>
+                                                <td>Franquia</td>
+                                                <td>6.980</td>
+                                                <td>1.745</td>
+                                                <td>35</td>
+                                            </tr>
+                                            <tr class="table-info">
+                                                <td>3</td>
+                                                <td>Loja Sul</td>
+                                                <td>Própria</td>
+                                                <td>5.875</td>
+                                                <td>1.469</td>
+                                                <td>29</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Franquia Norte</td>
+                                                <td>Franquia</td>
+                                                <td>4.250</td>
+                                                <td>1.062</td>
+                                                <td>21</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer class="footer mt-5 py-3">
+        <div class="container text-center">
+            <span class="text-muted">Sistema de Gamificação para Vendas de Açougue e Cortes Finos &copy; 2023</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/vendedor/dashboard.js"></script>
+    <script src="../../js/vendedor/ranking.js"></script>
+    <script src="../../js/vendedor/template/header.js"></script>
+    <script src="../../js/vendedor/template/menu-vendedor.js"></script>
+</body>
+</html>

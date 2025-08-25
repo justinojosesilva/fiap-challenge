@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     feather.replace();
     
     // Verificar autenticação e permissões
-    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'gerente')) {
-        window.location.href = '../index.html';
-        return;
-    }
+    // const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    // if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'gestor')) {
+    //     window.location.href = '../index.html';
+    //     return;
+    // }
     
     // Configurar data mínima para hoje
     const today = new Date().toISOString().split('T')[0];

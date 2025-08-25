@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recompensas do Vendedor - Sistema de Gamificação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark" id="header">
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            </nav>
+
+            <!-- Conteúdo Principal -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+                <!-- Conteúdo da Página -->
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <div class="h2">
+                        <h1>Recompensas Disponíveis</h1>
+                        <p>Confira as recompensas que você pode resgatar com seus pontos.</p>
+                    </div>
+                </div>
+
+                <!-- Pontos Disponíveis -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card dashboard-card">
+                            <div class="card-body text-center">
+                                <h3>Seus Pontos Disponíveis</h3>
+                                <p class="dashboard-value">1.250</p>
+                                <p>Continue acumulando pontos para desbloquear mais recompensas!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categorias de Recompensas -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <ul class="nav nav-tabs" id="recompensasTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="todas-tab" data-bs-toggle="tab" data-bs-target="#todas" type="button" role="tab" aria-controls="todas" aria-selected="true">Todas</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="financeiras-tab" data-bs-toggle="tab" data-bs-target="#financeiras" type="button" role="tab" aria-controls="financeiras" aria-selected="false">Financeiras</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="produtos-tab" data-bs-toggle="tab" data-bs-target="#produtos" type="button" role="tab" aria-controls="produtos" aria-selected="false">Produtos</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="experiencias-tab" data-bs-toggle="tab" data-bs-target="#experiencias" type="button" role="tab" aria-controls="experiencias" aria-selected="false">Experiências</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Recompensas -->
+                <div class="tab-content" id="recompensasTabsContent">
+                    <div class="tab-pane fade show active" id="todas" role="tabpanel" aria-labelledby="todas-tab">
+                        <div class="row mt-4">
+                            <!-- Recompensa 1 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card reward-card">
+                                    <div class="card-body text-center">
+                                        <div class="reward-icon">
+                                            <i data-feather="credit-card"></i>
+                                        </div>
+                                        <h4>Vale-presente R$50</h4>
+                                        <p>Vale-presente para usar em qualquer loja parceira.</p>
+                                        <div class="reward-points">500 pontos</div>
+                                        <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#resgateModal" data-reward="Vale-presente R$50" data-points="500">Resgatar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Recompensa 2 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card reward-card">
+                                    <div class="card-body text-center">
+                                        <div class="reward-icon">
+                                            <i data-feather="dollar-sign"></i>
+                                        </div>
+                                        <h4>Bônus de R$100</h4>
+                                        <p>Bônus adicionado ao seu próximo pagamento.</p>
+                                        <div class="reward-points">1.000 pontos</div>
+                                        <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#resgateModal" data-reward="Bônus de R$100" data-points="1000">Resgatar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Recompensa 3 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card reward-card">
+                                    <div class="card-body text-center">
+                                        <div class="reward-icon">
+                                            <i data-feather="coffee"></i>
+                                        </div>
+                                        <h4>Kit Café Premium</h4>
+                                        <p>Kit com café especial e acessórios.</p>
+                                        <div class="reward-points">750 pontos</div>
+                                        <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#resgateModal" data-reward="Kit Café Premium" data-points="750">Resgatar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Recompensa 4 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card reward-card">
+                                    <div class="card-body text-center">
+                                        <div class="reward-icon">
+                                            <i data-feather="calendar"></i>
+                                        </div>
+                                        <h4>Dia de Folga Extra</h4>
+                                        <p>Um dia de folga adicional para usar quando quiser.</p>
+                                        <div class="reward-points">2.000 pontos</div>
+                                        <button class="btn btn-secondary mt-3" disabled>Pontos Insuficientes</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Recompensa 5 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card reward-card">
+                                    <div class="card-body text-center">
+                                        <div class="reward-icon">
+                                            <i data-feather="smartphone"></i>
+                                        </div>
+                                        <h4>Smartphone Novo</h4>
+                                        <p>Smartphone de última geração para uso pessoal.</p>
+                                        <div class="reward-points">5.000 pontos</div>
+                                        <button class="btn btn-secondary mt-3" disabled>Pontos Insuficientes</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Recompensa 6 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card reward-card">
+                                    <div class="card-body text-center">
+                                        <div class="reward-icon">
+                                            <i data-feather="briefcase"></i>
+                                        </div>
+                                        <h4>Curso de Especialização</h4>
+                                        <p>Curso de especialização em vendas ou área relacionada.</p>
+                                        <div class="reward-points">3.000 pontos</div>
+                                        <button class="btn btn-secondary mt-3" disabled>Pontos Insuficientes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Outras abas de categorias seriam implementadas de forma similar -->
+                    <div class="tab-pane fade" id="financeiras" role="tabpanel" aria-labelledby="financeiras-tab">
+                        <!-- Conteúdo da aba Financeiras -->
+                    </div>
+                    <div class="tab-pane fade" id="produtos" role="tabpanel" aria-labelledby="produtos-tab">
+                        <!-- Conteúdo da aba Produtos -->
+                    </div>
+                    <div class="tab-pane fade" id="experiencias" role="tabpanel" aria-labelledby="experiencias-tab">
+                        <!-- Conteúdo da aba Experiências -->
+                    </div>
+                </div>
+
+                <!-- Modal de Resgate -->
+                <div class="modal fade" id="resgateModal" tabindex="-1" aria-labelledby="resgateModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="resgateModalLabel">Confirmar Resgate</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Você está prestes a resgatar <span id="rewardName">Recompensa</span> por <span id="rewardPoints">X</span> pontos.</p>
+                                <p>Seus pontos atuais: <strong>1.250</strong></p>
+                                <p>Pontos após o resgate: <strong><span id="pointsAfter">X</span></strong></p>
+                                <div class="form-group mt-3">
+                                    <label for="deliveryAddress">Endereço de Entrega (se aplicável)</label>
+                                    <textarea class="form-control" id="deliveryAddress" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" id="confirmResgateBtn">Confirmar Resgate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <footer class="footer mt-auto py-3 bg-light">
+                    <div class="container text-center">
+                        <span class="text-muted">© 2023 Sistema de Gamificação - Todos os direitos reservados</span>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/vendedor.js"></script> -->
+    <script src="../../js/vendedor/template/header.js"></script>
+    <script src="../../js/vendedor/template/menu-vendedor.js"></script>
+    <script>
+        // Inicializa os ícones Feather
+        feather.replace();
+        
+        // Configuração do modal de resgate
+        var resgateModal = document.getElementById('resgateModal');
+        if (resgateModal) {
+            resgateModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget;
+                var reward = button.getAttribute('data-reward');
+                var points = button.getAttribute('data-points');
+                
+                var rewardNameElement = document.getElementById('rewardName');
+                var rewardPointsElement = document.getElementById('rewardPoints');
+                var pointsAfterElement = document.getElementById('pointsAfter');
+                
+                if (rewardNameElement) rewardNameElement.textContent = reward;
+                if (rewardPointsElement) rewardPointsElement.textContent = points;
+                
+                // Calcula pontos restantes
+                var currentPoints = 1250;
+                var pointsAfter = currentPoints - parseInt(points);
+                if (pointsAfterElement) pointsAfterElement.textContent = pointsAfter;
+            });
+        }
+        
+        // Botão de confirmação de resgate
+        var confirmResgateBtn = document.getElementById('confirmResgateBtn');
+        if (confirmResgateBtn) {
+            confirmResgateBtn.addEventListener('click', function() {
+                alert('Resgate realizado com sucesso! Você receberá mais informações por e-mail.');
+                var modalInstance = bootstrap.Modal.getInstance(resgateModal);
+                modalInstance.hide();
+            });
+        }
+    </script>
+</body>
+</html>
